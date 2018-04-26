@@ -1,0 +1,10 @@
+C:\Users\brand\source\repos\Inventaria con listas\Inventaria con listas\bin\Debug\Inventaria con listas.exe.config
+C:\Users\brand\source\repos\Inventaria con listas\Inventaria con listas\bin\Debug\Inventaria con listas.exe
+C:\Users\brand\source\repos\Inventaria con listas\Inventaria con listas\bin\Debug\Inventaria con listas.pdb
+C:\Users\brand\source\repos\Inventaria con listas\Inventaria con listas\obj\Debug\Inventaria_con_listas.Form1.resources
+C:\Users\brand\source\repos\Inventaria con listas\Inventaria con listas\obj\Debug\Inventaria_con_listas.Properties.Resources.resources
+C:\Users\brand\source\repos\Inventaria con listas\Inventaria con listas\obj\Debug\Inventaria con listas.csproj.GenerateResource.Cache
+C:\Users\brand\source\repos\Inventaria con listas\Inventaria con listas\obj\Debug\Inventaria con listas.csproj.CoreCompileInputs.cache
+C:\Users\brand\source\repos\Inventaria con listas\Inventaria con listas\obj\Debug\Inventaria con listas.exe
+C:\Users\brand\source\repos\Inventaria con listas\Inventaria con listas\obj\Debug\Inventaria con listas.pdb
+C:\Users\brand\source\repos\Inventaria con listas\Inventaria con listas\obj\Debug\Inventaria con listas.csprojResolveAssemblyReference.cache
