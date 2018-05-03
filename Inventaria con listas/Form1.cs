@@ -83,6 +83,20 @@ namespace Inventaria_con_listas
                 return "Se agregó correctamente el producto " + product.Name;
             }
 
+            internal string addFirst(Product product)
+            {
+                if (first != null)
+                {
+                    Product temp = first;
+                    first = product;
+                    product.Next = temp;
+                }
+                else
+                    first = product;
+
+                return "Se agregó correctamente el producto " + product.Name + " al inicio";
+            }
+
             internal string listProducts()
             {
                 if (first != null)
@@ -93,6 +107,23 @@ namespace Inventaria_con_listas
                     {
                         temp = temp.Next;
                         productsString += temp.ToString();
+                    }
+                    return productsString;
+                }
+                else
+                    return "No se ha agregado ningún producto al inventario";
+            }
+
+            internal string listInvert()
+            {
+                if (first != null)
+                {
+                    string productsString = first.ToString();
+                    Product temp = first;
+                    while (temp.Next != null)
+                    {
+                        temp = temp.Next;
+                        productsString = temp.ToString() + productsString;
                     }
                     return productsString;
                 }
@@ -197,6 +228,44 @@ namespace Inventaria_con_listas
                 else
                     return "No se ha agregado ningún producto al inventario, no se puede eliminar";
             }
+
+            internal string deleteFirst()
+            {
+                if (first != null)
+                    return deleteById(first.Id);
+                else
+                    return "No se ha agregado ningún producto al inventario, no se puede eliminar";
+            }
+
+            internal string deleteLast()
+            {
+                if (first != null)
+                {
+                    if (first.Next != null)
+                    {
+                        Product temp = first.Next;
+                        Product before = first;
+                        do
+                        {
+                            if (temp.Next == null)
+                                before.Next = null;
+                            else
+                                before = temp;
+                            temp = temp.Next;
+                        } while (temp != null);
+
+                        before = null;
+                        return "Se eliminó correctamente el último producto";
+                    }
+                    else
+                    {
+                        first = null;
+                        return "Se eliminó correctamente el último producto";
+                    }
+                }
+                else
+                    return "No se ha agregado ningún producto al inventario, no se puede eliminar";
+            }
         }
 
         Inventory inventory;
@@ -205,23 +274,24 @@ namespace Inventaria_con_listas
         {
             InitializeComponent();
             inventory = new Inventory();
-            //addProducts();
+            addProducts();
         }
 
         //Debuggin method
         public void addProducts()
         {
             Random a = new Random();
-            for (int i = 1; i < 100; i++)
+            for (int i = 1; i < 50; i++)
             {
                 Console.WriteLine(i);
-                inventory.add(new Product(a.Next(1, 8), "producto " + (i * 2), i * 2, "description " + (i * 2) + " " + (i * 2) + " " + " " + (i * 2), (i * 2)));
+                inventory.add(new Product(a.Next(1, 5), "producto " + (i * 2), i * 2, "description " + (i * 2) + " " + (i * 2) + " " + " " + (i * 2), (i * 2)));
             }
         }
 
         private void btnListar_Click(object sender, EventArgs e)
         {
-            txtMostrar.Text = inventory.listByShortDescription();
+            //txtMostrar.Text = inventory.listByShortDescription();
+            txtMostrar.Text = inventory.listProducts();
             lblEstado.Text = "Elementos listados";
         }
 
@@ -262,6 +332,36 @@ namespace Inventaria_con_listas
         {
             inventory.invert();
             btnListar.PerformClick();
+        }
+
+        private void btnAgregarInicio_Click(object sender, EventArgs e)
+        {
+            if (txtNombre.Text.Trim() != "" && txtDescripcion.Text.Trim() != "")
+            {
+                string agregar = inventory.addFirst(new Product(Convert.ToInt32(numCodigo.Value), txtNombre.Text, Convert.ToDouble(numCantidad.Value), txtDescripcion.Text, Convert.ToInt32(numCantidad.Value)));
+                btnListar.PerformClick();
+                lblEstado.Text = agregar;
+            }
+        }
+
+        private void btnEliminarPrimero_Click(object sender, EventArgs e)
+        {
+            string eliminar = inventory.deleteFirst();
+            btnListar.PerformClick();
+            lblEstado.Text = eliminar;
+        }
+
+        private void btnEliminarUltimo_Click(object sender, EventArgs e)
+        {
+            string eliminar = inventory.deleteLast();
+            btnListar.PerformClick();
+            lblEstado.Text = eliminar;
+        }
+
+        private void btnListarInvertidos_Click(object sender, EventArgs e)
+        {
+            txtMostrar.Text = inventory.listInvert();
+            lblEstado.Text = "Elementos listados";
         }
     }
 }
